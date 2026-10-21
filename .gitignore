@@ -1,0 +1,7 @@
+target/
+test_snapshots/
+.soroban/
+.stellar/
+node_modules/
+.next/
+.env*.local
