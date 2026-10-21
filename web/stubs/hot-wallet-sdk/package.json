@@ -1,0 +1,8 @@
+{
+  "name": "@hot-wallet/sdk",
+  "version": "0.0.0-tagit-stub",
+  "private": true,
+  "description": "Stand-in for HOT Wallet's SDK, which TagIt never loads. See README.md.",
+  "main": "index.js",
+  "exports": "./index.js"
+}

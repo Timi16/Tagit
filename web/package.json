@@ -1,0 +1,44 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "tsx --env-file=.env.example --test 'lib/**/*.test.ts'",
+    "smoke": "tsx --env-file=.env.example scripts/smoke.mts",
+    "typecheck": "next typegen && tsc --noEmit",
+    "e2e": "tsx --env-file=.env.example scripts/e2e.mts",
+    "test:ui": "NEXT_PUBLIC_E2E=1 next build && NEXT_PUBLIC_E2E=1 tsx --env-file=.env.example scripts/ui-e2e.mts"
+  },
+  "dependencies": {
+    "@creit.tech/stellar-wallets-kit": "2.7.1",
+    "@stellar/stellar-sdk": "17.2.1",
+    "@tanstack/react-query": "5.104.5",
+    "buffer": "6.0.3",
+    "motion": "14.4.0",
+    "next": "16.4.2",
+    "qrcode": "1.5.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/qrcode": "1.5.6",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.2",
+    "playwright-core": "1.56.0",
+    "tailwindcss": "^4",
+    "tsx": "4.23.15",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "@hot-wallet/sdk": "file:./stubs/hot-wallet-sdk"
+  }
+}
