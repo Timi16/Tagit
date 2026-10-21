@@ -22,11 +22,6 @@ export function shortAddress(address: string): string {
   return `${address.slice(0, 4)}…${address.slice(-4)}`;
 }
 
-/** An address in groups of four, as the review sheet shows it. */
-export function addressGroups(address: string): string[] {
-  return address.match(/.{1,4}/g) ?? [address];
-}
-
 /** "1234567.5" → "1,234,567.5" */
 export function groupThousands(decimal: string): string {
   const [whole, fraction] = decimal.split(".");

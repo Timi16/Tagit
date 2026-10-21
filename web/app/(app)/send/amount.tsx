@@ -3,11 +3,11 @@
 import { motion } from "motion/react";
 import { useEffect, type ReactNode } from "react";
 
-import { Avatar, Icon, Screen, TopBack, UsdcMark, XlmMark } from "@/components/ui";
+import { Avatar, Icon, Screen, TopBack, UsdcMark, WalletAddress, XlmMark } from "@/components/ui";
 import { useBalances } from "@/hooks/useBalances";
 import { useResolveTag } from "@/hooks/useResolveTag";
 import { useWallet } from "@/hooks/useWallet";
-import { addressGroups, formatBalance, groupThousands, shortAddress } from "@/lib/format";
+import { formatBalance, groupThousands, shortAddress } from "@/lib/format";
 import { fromUnits, toUnits, XLM_FEE_HEADROOM, type AssetCode } from "@/lib/stellar/assets";
 
 const KEYS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "0", "del"] as const;
@@ -137,14 +137,7 @@ export function AmountStep({
               Their wallet
             </div>
             {wallet ? (
-              <div className="mono" style={{ fontSize: 13, lineHeight: 1.7, fontWeight: 600, wordSpacing: 2 }}>
-                {addressGroups(wallet).map((g, i, all) => (
-                  <span key={i}>
-                    {i === 0 || i === all.length - 1 ? <b style={{ color: "#1F5EFF" }}>{g}</b> : g}
-                    {i < all.length - 1 ? " " : ""}
-                  </span>
-                ))}
-              </div>
+              <WalletAddress address={wallet} size={13} />
             ) : (
               <span className="skel" style={{ display: "block", height: 44 }} />
             )}

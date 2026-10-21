@@ -1,28 +1,13 @@
 "use client";
 
-import { Avatar, Dots, Icon, Ripple, Sheet } from "@/components/ui";
+import { Avatar, Dots, Icon, Ripple, Sheet, WalletAddress } from "@/components/ui";
 import { useMyTag } from "@/hooks/useMyTag";
 import type { SendState } from "@/hooks/useSend";
 import { useWallet } from "@/hooks/useWallet";
-import { addressGroups, formatAmount, shortAddress } from "@/lib/format";
+import { formatAmount, shortAddress } from "@/lib/format";
 import { fromUnits } from "@/lib/stellar/assets";
 
 type ReviewState = Extract<SendState, { step: "review" | "signing" | "changed" }>;
-
-/** The full address in groups of four; first and last group in blue. */
-function FullAddress({ address }: { address: string }) {
-  const groups = addressGroups(address);
-  return (
-    <div className="mono" style={{ fontSize: 14, lineHeight: 1.7, fontWeight: 600, letterSpacing: ".02em", wordSpacing: 2 }} aria-label={address}>
-      {groups.map((g, i) => (
-        <span key={i}>
-          {i === 0 || i === groups.length - 1 ? <b style={{ color: "#1F5EFF" }}>{g}</b> : g}
-          {i < groups.length - 1 ? " " : ""}
-        </span>
-      ))}
-    </div>
-  );
-}
 
 /** SendReview.dc.html: review → approve in wallet, or stop when the tag moved. */
 export function ReviewSheet({
@@ -83,7 +68,7 @@ export function ReviewSheet({
               </span>
             </div>
             <div className="lbl">Their full wallet address</div>
-            <FullAddress address={quote.wallet} />
+            <WalletAddress address={quote.wallet} />
           </div>
           <div className="rise d4" style={{ display: "flex", flexDirection: "column", gap: 10, fontSize: 14, fontWeight: 700, padding: "0 2px" }}>
             <div className="row" style={{ justifyContent: "space-between" }}>

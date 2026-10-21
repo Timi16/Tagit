@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { use } from "react";
 
-import { Avatar, Icon, Logo, Screen } from "@/components/ui";
+import { Avatar, Icon, Logo, Screen, WalletAddress } from "@/components/ui";
 import { useResolveTag } from "@/hooks/useResolveTag";
 import { useWallet } from "@/hooks/useWallet";
-import { addressGroups } from "@/lib/format";
 import { describeError } from "@/lib/stellar/errors";
 import { safeDecode, TAG_PROBLEM_MESSAGES } from "@/lib/stellar/tag";
 
@@ -75,7 +74,6 @@ export function PayLink({ params }: { params: Promise<{ tag: string }> }) {
 
   const { tag, record } = state;
   const mine = address === record.owner;
-  const groups = addressGroups(record.wallet);
 
   return (
     <Screen
@@ -102,14 +100,7 @@ export function PayLink({ params }: { params: Promise<{ tag: string }> }) {
       </section>
       <section className="card rise d2" style={{ display: "flex", flexDirection: "column", gap: 10, background: "#F5F8FF", border: "1px solid #DFE7FF" }}>
         <div className="lbl">Payments go to</div>
-        <div className="mono" style={{ fontSize: 14, lineHeight: 1.7, fontWeight: 600, letterSpacing: ".02em", wordSpacing: 2 }}>
-          {groups.map((g, i) => (
-            <span key={i}>
-              {i === 0 || i === groups.length - 1 ? <b style={{ color: "#1F5EFF" }}>{g}</b> : g}
-              {i < groups.length - 1 ? " " : ""}
-            </span>
-          ))}
-        </div>
+        <WalletAddress address={record.wallet} />
       </section>
       <div className="row rise d3 mute" style={{ gap: 8, fontSize: 13, fontWeight: 600, lineHeight: 1.45 }}>
         <Icon name="shield" size={18} stroke="#1F5EFF" />

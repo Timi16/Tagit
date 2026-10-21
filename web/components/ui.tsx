@@ -275,6 +275,20 @@ export function SheetTitle({ children, onClose }: { children: ReactNode; onClose
   );
 }
 
+/**
+ * A full wallet address as one unbroken string (wrapping at the card's edge),
+ * with the first and last four characters in blue for a quick check.
+ */
+export function WalletAddress({ address, size = 14 }: { address: string; size?: number }) {
+  return (
+    <div className="mono" aria-label={address} style={{ fontSize: size, lineHeight: 1.6, fontWeight: 600, letterSpacing: ".01em", wordBreak: "break-all" }}>
+      <b style={{ color: "#1F5EFF" }}>{address.slice(0, 4)}</b>
+      {address.slice(4, -4)}
+      <b style={{ color: "#1F5EFF" }}>{address.slice(-4)}</b>
+    </div>
+  );
+}
+
 /** A pulsing ring behind a round badge (claim success, sent, signing). */
 export function Ripple({ color, children, duration = 1.6 }: { color: string; children: ReactNode; duration?: number }) {
   return (
